@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { QuizData, quizData } from "@/lib/quiz-data";
+import { quizData } from "@/lib/quiz-data";
 
 export default function QuizPage() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -50,16 +50,16 @@ export default function QuizPage() {
 
   if (showResult) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100">
-        <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
-          <h1 className="text-3xl font-bold text-center mb-6 text-gray-800">
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
+        <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg max-w-md w-full">
+          <h1 className="text-3xl font-bold text-center mb-6 text-gray-800 dark:text-gray-100">
             クイズ終了！
           </h1>
           <div className="text-center mb-8">
-            <p className="text-2xl mb-4">
-              あなたのスコア: <span className="font-bold text-blue-600">{score}</span> / {quizData.length}
+            <p className="text-2xl mb-4 text-gray-900 dark:text-gray-100">
+              あなたのスコア: <span className="font-bold text-blue-600 dark:text-blue-400">{score}</span> / {quizData.length}
             </p>
-            <p className="text-lg text-gray-600">
+            <p className="text-lg text-gray-600 dark:text-gray-300">
               {score === quizData.length
                 ? "完璧です！全問正解です！"
                 : score >= quizData.length * 0.7
@@ -92,14 +92,14 @@ export default function QuizPage() {
   const isAnswered = answeredQuestions[currentQuestion];
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
-      <div className="bg-white p-8 rounded-lg shadow-lg max-w-2xl w-full">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 p-4">
+      <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg max-w-2xl w-full">
         <div className="mb-6">
           <div className="flex justify-between items-center mb-4">
-            <span className="text-sm text-gray-500">
+            <span className="text-sm text-gray-500 dark:text-gray-400">
               問題 {currentQuestion + 1} / {quizData.length}
             </span>
-            <span className="text-sm text-gray-500">
+            <span className="text-sm text-gray-500 dark:text-gray-400">
               スコア: {score}
             </span>
           </div>
@@ -113,7 +113,7 @@ export default function QuizPage() {
           </div>
         </div>
 
-        <h2 className="text-xl font-bold mb-6 text-gray-800">
+        <h2 className="text-xl font-bold mb-6 text-gray-800 dark:text-gray-100">
           {question.question}
         </h2>
 
@@ -135,19 +135,19 @@ export default function QuizPage() {
                       ? "border-green-500 bg-green-50"
                       : showIncorrect
                       ? "border-red-500 bg-red-50"
-                      : "border-gray-200 bg-gray-50"
+                      : "border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-700"
                     : isSelected
-                    ? "border-blue-500 bg-blue-50"
-                    : "border-gray-200 hover:border-gray-300 hover:bg-gray-50"
+                    ? "border-blue-500 bg-blue-50 dark:bg-blue-900/30"
+                    : "border-gray-200 dark:border-gray-600 hover:border-gray-300 dark:hover:border-gray-500 hover:bg-gray-50 dark:hover:bg-gray-700"
                 } ${!isAnswered && "cursor-pointer"}`}
               >
                 <div className="flex items-center justify-between">
                   <span className={
                     showCorrect
-                      ? "text-green-700 font-semibold"
+                      ? "text-green-700 dark:text-green-400 font-semibold"
                       : showIncorrect
-                      ? "text-red-700"
-                      : ""
+                      ? "text-red-700 dark:text-red-400"
+                      : "text-gray-900 dark:text-gray-100"
                   }>
                     {answer}
                   </span>
